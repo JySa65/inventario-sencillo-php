@@ -8,7 +8,7 @@ $us = "root";
 $pa = "root";
 $db = "inventario";
 $po = "3306";
-$con = mysqli_connect($ho, $us, $pa, $db, $po);
+$con = mysqli_connect($ho, $us, $pa, $db, $po) or die($con = mysqli_connect("10.42.0.68", $us, $ro, $db, $po));
 $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE aux.id=MAX(pre.id)) AS monto FROM productos AS pro LEFT JOIN precios AS pre ON pro.id=pre.id_prod GROUP BY pre.id_prod");
 ?>
 <!DOCTYPE html>
@@ -19,6 +19,7 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 	<title>GLABAL</title>
 	<!-- CSS -->
 	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="animate/animate.css">
 	<!-- JS -->
 	<script src="bootstrap/jquery-3.min.js"></script>
 	<script src="bootstrap/bootstrap.min.js"></script>
@@ -39,7 +40,7 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 				<tr>
 					<th class="hidden-sm-down">Cod</th>
 					<th>Disp</th>
-					<th>Producto <input type="submit" onclick="$('.modal').modal('show');"></th>
+					<th>Producto <input type="submit" onclick="cambiarVentana(1);"></th>
 					<th>Precio</th>
 					<th>Opc.</th>
 				</tr>
@@ -61,7 +62,10 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 			</tbody>
 		</table>
 	</div>
-	<div id="ventana2"></div>
+	<div class="hiden">
+		<div id="ventana2">hola</div>
+	</div>
+	
 	<div class="modal">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
@@ -103,8 +107,12 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 
 		}
 		function cambiarVentana(id1){
-			var v1 = document.getElementById(id1);
-			v1.classList.add("slideInRight animate")
+			//var v1 = document.getElementById(id1);
+			//v1.classList.add("slideInRight animate");
+			$("#ventana1").removeClass().addClass("slideOutLeft animated");
+			setTimeOut(function(ev){ 
+				$("#ventana2").removeClass().addClass("slideInRight animated");
+			}, 5000);
 		}
 
 		function testAnim(x) {
