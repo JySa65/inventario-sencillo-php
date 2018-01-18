@@ -2,14 +2,6 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-$ho = "localhost";
-$us = "root";
-$pa = "root";
-$db = "inventario";
-$po = "3306";
-$con = mysqli_connect($ho, $us, $pa, $db, $po) or die($con = mysqli_connect("10.42.0.68", $us, $ro, $db, $po));
-$prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE aux.id=MAX(pre.id)) AS monto FROM productos AS pro LEFT JOIN precios AS pre ON pro.id=pre.id_prod GROUP BY pre.id_prod");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -34,38 +26,8 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 	}</style>
 </head>
 <body>
-	<div id="ventana1">
-		<table class="table table-bordered table-hover table-striped text-center">
-			<thead>
-				<tr>
-					<th class="hidden-sm-down">Cod</th>
-					<th>Disp</th>
-					<th>Producto <input type="submit" onclick="cambiarVentana(1);"></th>
-					<th>Precio</th>
-					<th>Opc.</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				while ($row = $prod->fetch_assoc()){
-					?>					
-					<tr>
-						<td class="hidden-sm-down"><?= $row["id"] ?></td>
-						<td><?= $row["disponible"] ?></td>
-						<td><?= $row["nombre"] ?></td>
-						<td><?= number_format($row["monto"], 2) ?></td>
-						<td><button class="btn btn-sm btn-primary">VENTA</button><hr><button class="btn btn-sm btn-danger">COMPRA</button></td>
-					</tr>
-					<?php
-				}
-				?>
-			</tbody>
-		</table>
-	</div>
-	<div class="hiden">
-		<div id="ventana2">hola</div>
-	</div>
-	
+	<div id="ventOn"><?php require("templates/main.php"); ?></div>
+	<div id="ventOff" class="d-none"><label onclick="cambiarVentana();">cargandoo...</label></div>
 	<div class="modal">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
@@ -106,35 +68,28 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 		function abrirVentana(){
 
 		}
-		function cambiarVentana(id1){
-			//var v1 = document.getElementById(id1);
-			//v1.classList.add("slideInRight animate");
-			$("#ventana1").removeClass().addClass("slideOutLeft animated");
-			setTimeOut(function(ev){ 
-				$("#ventana2").removeClass().addClass("slideInRight animated");
-			}, 5000);
+		function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "slide"){
+			var eOut = $("#"+elementOut);
+			var eIn = $("#"+elementIn);
+			eOut.animateCss(effect + "OutLeft fixed-top", function(){});
+			eIn.animateCss(effect + "InRight", function(){
+				eOut.attr("id", elementIn);
+				eIn.attr("id", elementOut);
+			});
 		}
-
-		function testAnim(x) {
-			$('#animationSandbox').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-				$(this).removeClass();
-			});
-		};
-
-		$(document).ready(function(){
-			$('.js--triggerAnimation').click(function(e){
-				e.preventDefault();
-				var anim = $('.js--animations').val();
-				testAnim(anim);
-			});
-
-			$('.js--animations').change(function(){
-				var anim = $(this).val();
-				testAnim(anim);
-			});
+		$.fn.extend({
+			animateCss: function (animationName, callback) {
+				var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+				this.removeClass();
+				this.addClass('animated ' + animationName).one(animationEnd, function() {
+					if (callback) {
+						callback();
+					}
+					//$(this).removeClass('animated ' + animationName);
+				});
+				return this;
+			}
 		});
-
-
 	</script>
 </body>
 </html>
