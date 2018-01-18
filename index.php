@@ -5,10 +5,10 @@ error_reporting(E_ALL);
 
 $ho = "localhost";
 $us = "root";
-$pa = "root";
+$pa = "";
 $db = "inventario";
 $po = "3306";
-$con = mysqli_connect($ho, $us, $pa, $db, $po) or die($con = mysqli_connect("10.42.0.68", $us, $ro, $db, $po));
+$con = mysqli_connect($ho, $us, $pa, $db, $po);
 $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE aux.id=MAX(pre.id)) AS monto FROM productos AS pro LEFT JOIN precios AS pre ON pro.id=pre.id_prod GROUP BY pre.id_prod");
 ?>
 <!DOCTYPE html>
@@ -22,6 +22,7 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 	<link rel="stylesheet" href="animate/animate.css">
 	<!-- JS -->
 	<script src="bootstrap/jquery-3.min.js"></script>
+	<script src="bootstrap/popper.min.js"></script>
 	<script src="bootstrap/bootstrap.min.js"></script>
 	<style>
 	table td {
@@ -66,6 +67,9 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 		<div id="ventana2">hola</div>
 	</div>
 	
+		<div class="text-right">
+			<a tabindex="0" class="btn btn-lg btn-danger" id="pop">Dismissible popover</a>
+		</div>
 	<div class="modal">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
@@ -136,5 +140,16 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 
 
 	</script>
+
+	<script>
+			html = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-header'></h3><div class='popover-body'></div>wefwef</div>wefwefwefk"
+			$(function () {
+				$('#pop').popover({
+					title:"holaaa",
+					content:"holawkegbfklwjehf"
+				})
+			})
+
+		</script>
 </body>
 </html>
