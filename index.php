@@ -1,8 +1,3 @@
-<?php
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,20 +26,17 @@
 <body>
 	<div id="tgBuscar" class="d-none">
 		<hr>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-12">
-					<div class="input-group">
-						<input type="text" class="form-control" id="id_buscar" placeholder="Ingrese Producto...!">
-						<div class="input-group-append">
-							<button class="btn btn-danger" onclick="toggleBuscar()"><i class="fa fa-times"></i></button>
-						</div>
+		<div class="container-fluid row">
+			<div class="col-12">
+				<div class="input-group">
+					<input type="text" class="form-control" id="id_buscar" placeholder="Ingrese Producto...!">
+					<div class="input-group-append">
+						<button class="btn btn-danger" onclick="toggleBuscar();"><i class="fa fa-times"></i></button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
 	<div id="ventOn"><?php require("templates/main.php"); ?></div>
 	<div id="ventOff" class="d-none"></div>
 	<div class="modal">

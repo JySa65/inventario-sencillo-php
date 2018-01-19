@@ -21,10 +21,8 @@ function toggleBuscar(){
 	var tbi = tb.find("input");
 	if(tb.hasClass("slideInDown")){
 		tbi.attr("disabled", "");
-		$('#pop').removeAttr('hidden');
 		tb.animateCss("slideOutUp fixed-top", function(){});
 	}else{	
-		$('#pop').attr('hidden', '');
 		tbi.val("").removeAttr("disabled")
 		tb.animateCss("slideInDown fixed-top", function(){
 			tbi.focus();
@@ -77,7 +75,3 @@ function buscar(ev){
 	}
 	return true;
 }
-// var re = /(^|.)+manuel+(.|$)/;
-// var str = "manuel";
-// var myArray = re.test(str);
-// console.log (myArray);
