@@ -47,7 +47,7 @@ error_reporting(E_ALL);
 	</div>
 	
 	<div id="ventOn"><?php require("templates/main.php"); ?></div>
-	<div id="ventOff" class="d-none"><label onclick="cambiarVentana();">cargandoo...</label></div>
+	<div id="ventOff" class="d-none"></div>
 	<div class="modal">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
