@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] != "GET"){
 require( __DIR__ . "/../conexion.php");
 $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE aux.id=MAX(pre.id)) AS monto FROM productos AS pro LEFT JOIN precios AS pre ON pro.id=pre.id_prod GROUP BY pre.id_prod");
 ?>
-<table class="table table-bordered table-hover table-striped text-center">
+<table class="table table-bordered table-hover table-striped text-center" id="mytable">
 	<thead>
 		<th class="d-none d-sm-none d-md-table-cell">Codigo</th>
 		<th class="d-table-cell d-md-none d-lg-none d-xl-none">Disp.</th>
@@ -35,3 +35,7 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 		<?php } ?>
 	</tbody>
 </table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center" id="pagina">
+  </ul>
+</nav>

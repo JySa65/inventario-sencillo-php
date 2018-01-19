@@ -17,8 +17,7 @@ window.addEventListener('load', function(){
 			MouseTouchUp(event, this);
 		});
 	}
-
-
+	paginator(1, trr(1));
 })
 $.fn.extend({
 	animateCss: function (animationName, callback) {
@@ -100,12 +99,15 @@ function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "
 		eIn.attr("id", elementOut);
 	});
 }
-function trr(){
-	return document.getElementsByTagName('table')[0].children[1].children; 
+function trr(tipo = 1){
+	if(tipo ==1){
+		return document.getElementsByTagName('table')[0].children[1].children; 	
+	}
+	return $("tbody > tr[class!='d-none']");
 }
 
 function buscar(ev){
-	datos = trr()
+	datos = trr(1)
 	inp = ev.target.value.toUpperCase();
 	if(inp.length > 0){
 		var re;
@@ -124,6 +126,7 @@ function buscar(ev){
 			datos[i].classList.remove('d-none');
 		}
 	}
+	paginator(1, trr(2))
 	return true;
 }
 var gtime = [];
@@ -155,3 +158,45 @@ function MouseTouchUp(ev, el) {
 }
 
 $('.collapse').collapse()
+var xy;
+function paginator(pagact = 1, tr){
+	xy = tr;
+	var datoMues = 2;
+	numbPage = Math.ceil(tr.length/datoMues);
+	if(pagact <= numbPage){
+		total = pagact*datoMues;
+		total2 = (total>=tr.length) ? tr.length : total
+		for(var i=0; i<tr.length; i++){
+			tr[i].classList.add('d-none');
+		}		
+		for(var i=(total)-datoMues; i<(total2); i++ ){
+			tr[i].classList.remove('d-none');
+		}	
+	} 
+	html = ""
+	for(var i=1; i<=numbPage; i++){
+		html+= '<li class="page-item'
+		ad = ' onclick="paginator(' + i + ', xy)"'
+		if(i == pagact){
+			html += ' active"'
+			ad =""
+		}
+		html += '"><a class="page-link"'+ ad +'>' + i + '</a></li>'
+	}
+	disabled = " disabled"
+	pagact1 = 0
+	if(pagact>1){
+		pagact1 = pagact - 1;
+		disabled="";
+	}
+	prev = '<li class="page-item'+ disabled +'"><a class="page-link" href="#" onclick="paginator(' + pagact1 + ', xy)"><<</a></li>'
+	
+	disabled = " disabled"
+	if(pagact < numbPage){
+		pagact += 1;
+		disabled="";
+	}
+	next = '<li class="page-item'+ disabled +'"><a class="page-link" href="#" onclick="paginator(' + pagact + ', xy)">>></a></li>'
+	$("#pagina").html(prev + html + next)
+}
+
