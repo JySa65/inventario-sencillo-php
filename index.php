@@ -19,6 +19,7 @@ error_reporting(E_ALL);
 	<script src="static/js/jquery-3.min.js"></script>
 	<script src="static/js/popper.min.js"></script>
 	<script src="static/js/bootstrap.min.js"></script>
+	<script src="static/js/buscador.js"></script>
 	<style>
 	table td {
 		padding-left: 0px!important;
@@ -68,42 +69,5 @@ error_reporting(E_ALL);
 			</div>
 		</div>
 	</div>
-	<script>
-		function abrirVentana(){
-
-		}
-		function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "slide"){
-			var eOut = $("#"+elementOut);
-			var eIn = $("#"+elementIn);
-			eOut.animateCss(effect + "OutLeft fixed-top", function(){});
-			eIn.animateCss(effect + "InRight", function(){
-				eOut.attr("id", elementIn);
-				eIn.attr("id", elementOut);
-			});
-		}
-		$.fn.extend({
-			animateCss: function (animationName, callback) {
-				var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-				this.removeClass();
-				this.addClass('animated ' + animationName).one(animationEnd, function() {
-					if (callback) {
-						callback();
-					}
-					//$(this).removeClass('animated ' + animationName);
-				});
-				return this;
-			}
-		});
-	</script>
-	<script>
-		hl = `<input type="text" class="form-control" id="id_buscar" placeholder="Ingrese Algo...!">`
-		$(function () {
-			$('#pop').popover({
-				html:true,
-				content:hl
-			})
-		})
-
-	</script>
 </body>
 </html>
