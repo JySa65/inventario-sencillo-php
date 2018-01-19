@@ -182,7 +182,7 @@ function paginator(pagact, tr){
 		pagact = 1;
 	}
 	xy = tr;
-	var datoMues = 2;
+	var datoMues = 20;
 	numbPage = Math.ceil(tr.length/datoMues);
 	if(pagact <= numbPage){
 		total = pagact*datoMues;
