@@ -33,7 +33,7 @@
 </head>
 <body>
 	<div id="tgBuscar" class="d-none">
-		<div class="row container-fluid mt-2">
+		<div class="row mt-2 mx-2">
 			<div class="col-12">
 				<div class="input-group">
 					<input type="text" class="form-control" id="id_buscar" placeholder="Ingrese Producto...!" style="box-shadow: none;">

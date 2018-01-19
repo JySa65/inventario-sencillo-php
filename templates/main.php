@@ -5,12 +5,12 @@ if ($_SERVER["REQUEST_METHOD"] != "GET"){
 require( __DIR__ . "/../conexion.php");
 $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE aux.id=MAX(pre.id)) AS monto FROM productos AS pro LEFT JOIN precios AS pre ON pro.id=pre.id_prod GROUP BY pre.id_prod");
 ?>
-<table class="table table-bordered table-hover table-striped text-center">
+<table class="table table-bordered table-hover table-striped text-center" id="mytable">
 	<thead>
 		<th class="d-none d-sm-none d-md-table-cell">Codigo</th>
 		<th class="d-table-cell d-md-none d-lg-none d-xl-none">Disp.</th>
 		<th class="d-none d-sm-none d-md-table-cell">Disponibilidad</button></th>
-		<th onclick="toggleBuscar()" class="d-table-cell d-md-none d-lg-none d-xl-none btn btn-danger btn-sm">Producto</th>
+		<th onclick="toggleBuscar()" id="quitar_css" class="d-table-cell d-md-none d-lg-none d-xl-none btn btn-danger btn-sm">Producto</th>
 		<th onclick="toggleBuscar()" class="d-none d-sm-none d-md-table-cell">Producto <i class="fa fa-search" style="background: #dc3545; padding: 3px 4px 4px 6px; box-shadow: 1px 1px 0px #444; color: white; border-radius: 5px;"></i></button></th>
 		<th>Precio</th>
 		<th class="d-none d-sm-table-cell">Opciones</th>
@@ -35,3 +35,7 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 		<?php } ?>
 	</tbody>
 </table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center" id="pagina">
+  </ul>
+</nav>
