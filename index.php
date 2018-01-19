@@ -62,7 +62,7 @@
 								<a class="list-group-item list-group-item-action" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-fw fa-plus"></i> Mas....</a>
 								<div class="collapse multi-collapse" id="multiCollapseExample1">
 									<div class="list-group">
-										<a href="#!" class="list-group-item list-group-item-action" id="add_producto"><span class="pr-4"></span><i class="fa fa-fw fa-shopping-bag"></i> Añadir Nuevo Producto</a>
+										<a href="#!" class="list-group-item list-group-item-action" id="add_producto" onclick="cargarVentana('templates/regisForm.php', {});"><span class="pr-4"></span><i class="fa fa-fw fa-shopping-bag"></i> Añadir Nuevo Producto</a>
 										<a href="#!" class="list-group-item list-group-item-action" id="add_rgeneral"><span class="pr-4"></span><i class="fa fa-fw fa-file-pdf-o"></i> Reporte Genereal</a>
 									</div>
 								</div>
