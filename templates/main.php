@@ -5,13 +5,6 @@ if ($_SERVER["REQUEST_METHOD"] != "GET"){
 require( __DIR__ . "/../conexion.php");
 $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE aux.id=MAX(pre.id)) AS monto FROM productos AS pro LEFT JOIN precios AS pre ON pro.id=pre.id_prod GROUP BY pre.id_prod");
 ?>
-<div id="tgBuscar" class="d-none">
-	<hr>
-	<div class="row">
-		<div class="col-12"><input type="text" class="form-control" id="id_buscar" placeholder="Ingrese Algo...!" onkeyup="buscar()"></div>
-	</div>
-	<hr>
-</div>
 <table class="table table-bordered table-hover table-striped text-center">
 	<thead>
 		<th class="hidden-sm-down">Cod</th>
