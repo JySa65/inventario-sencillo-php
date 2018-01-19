@@ -21,14 +21,14 @@ function toggleBuscar(){
 	var tbi = tb.find("input");
 	if(tb.hasClass("slideInDown")){
 		tbi.attr("disabled", "");
-		$('#pop').removeAttr('hidden');
 		tb.animateCss("slideOutUp fixed-top", function(){});
+		$('#pop').removeAttr('hidden');
 	}else{	
-		$('#pop').attr('hidden', '');
 		tbi.val("").removeAttr("disabled")
 		tb.animateCss("slideInDown fixed-top", function(){
 			tbi.focus();
 		});
+		$('#pop').attr('hidden', '');
 	}
 }
 function cargarVentana(datos){
@@ -77,6 +77,8 @@ function buscar(ev){
 	}
 	return true;
 }
+
+
 // var re = /(^|.)+manuel+(.|$)/;
 // var str = "manuel";
 // var myArray = re.test(str);
