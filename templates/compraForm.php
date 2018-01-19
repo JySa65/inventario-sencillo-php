@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 					if ($ppre = $con->query("SELECT (SELECT aux.monto FROM precios AS aux WHERE aux.id=MAX(pre.id)) AS monto FROM productos AS pro LEFT JOIN precios AS pre ON '".$token."'=pre.id_prod GROUP BY pre.id_prod")){
 						if ($row = $ppre->fetch_assoc()){ 
 							if($row["monto"] == $pre){
-								$con->query("INSERT INTO precios(id, id_prod, monto) VALUES (NULL, '".$token."', '".$pre."')");		
+								$con->query("INSERT INTO precios(id, id_prod, monto, fecha) VALUES (NULL, '".$token."', '".$pre."', '". date("Y-m-d") ."')");		
 							}
 						}
 					}
