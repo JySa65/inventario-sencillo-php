@@ -36,7 +36,6 @@ function cargarVentana(datos){
 	})
 	.always(function(data) {
 		if(data.readyState == 4 && data.status == 200){
-			console.log(data);
 			$("#ventOff").html(data.responseText);
 			cambiarVentana();
 		}

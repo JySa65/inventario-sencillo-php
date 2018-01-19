@@ -26,7 +26,7 @@ error_reporting(E_ALL);
 		padding-right: 0px!important;
 		vertical-align: middle!important;
 	}
-	hr {
+	table > hr {
 		margin: 5px 0px;
 	}</style>
 </head>

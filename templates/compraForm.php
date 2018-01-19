@@ -3,13 +3,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["prod"]) && !empty($_GET[
 	$nProd = &$_GET["prod"]; 
 	$nToken = &$_GET["token"]; 
 	?>
-	<div class="nav text-center bg-info">
-		<button type="button" class="btn btn-info border-right" style="box-shadow:none;" onclick="cambiarVentana();"><i class="fa fa-reply fa-fw"></i> VOLVER</button>
+	<div class="nav text-center bg-info" style="height:48px;">
+		<button type="button" class="btn btn-info" style="box-shadow:none;" onclick="cambiarVentana();"><i class="fa fa-reply fa-fw"></i> VOLVER</button>
 		<div class="nav-link font-weigh-bold"><h5>Compra de Producto</h5></div>
 	</div>	
-	<div class="container">
+	<div class="container" style="height:calc(100% - 48px);overflow:auto;">
 		<form method="POST">
 			<input type="hidden" value="<?= $nToken; ?>">
+			<br>
 			<div class="form-row">
 				<div class="form-group col-12">
 					<label for="prod">Producto</label>
@@ -17,15 +18,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["prod"]) && !empty($_GET[
 				</div>
 				<div class="form-group col-12">
 					<label for="cant">Cantidad</label>
-					<input class="form-control" type="cant" id="cant" placeholder="Cantidad: 1 2 3...">
+					<input class="form-control" type="cant" id="cant" placeholder="Cantidad: 1, 2, 3">
 				</div>
 				<div class="form-group col-12">
-					<label for="cant">Cantidad</label>
-					<input class="form-control" type="cant" id="cant" placeholder="Cantidad: 1 2 3...">
+					<label for="cant">Precio Venta</label>
+					<input class="form-control" type="cant" id="cant" placeholder="Monto: 1000,02">
 				</div>
 				<br>
-				<button type="submit" class="btn btn-block btn-success"><h3><i class="fa fa-save fa-fw"></i> Guardar</h3></button>
+				<button type="submit" class="btn btn-success"><i class="fa fa-save fa-fw"></i> Guardar</button>
+				<br>
 			</div>
 		</form>
 	</div>
-	<?php } ?>
+	<script>
+		$("#ventOff").css({"position": "fixed", "height": "100%"});
+	</script>
+	<?php 
+} ?>
