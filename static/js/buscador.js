@@ -1,6 +1,6 @@
 window.addEventListener('load', function(){
 	id_b = document.getElementById('id_buscar');	
-	//id_b.addEventListener('blur', toggleBuscar);
+	id_b.addEventListener('blur', toggleBuscar);
 	id_b.addEventListener('keyup', buscar);
 })
 $.fn.extend({
@@ -57,12 +57,27 @@ function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "
 }
 function buscar(ev){
 	datos = document.getElementsByTagName('table')[0].children[1].children;
-	for(var i = 0; i<datos.length; i++){
-		texto = datos[i].children[2].textContent;
-		letra = ev.key
-		if (letra in texto){
-			console.log('si')
+	inp = ev.target.value.toUpperCase();
+	if(inp.length > 0){
+		var re;
+		for(var i = 0; i<datos.length; i++){
+			texto = datos[i].children[2].textContent.toUpperCase();
+			letra = ev.key;
+			re = new RegExp(`(^|.)+${inp}+(.|$)`);
+			if (!re.test(texto)){
+				datos[i].classList.add('d-none');
+			}else{
+				datos[i].classList.remove('d-none');
+			}
+		}
+	}else{
+		for(var i = 0; i<datos.length; i++){
+			datos[i].classList.remove('d-none');
 		}
 	}
 	return true;
 }
+// var re = /(^|.)+manuel+(.|$)/;
+// var str = "manuel";
+// var myArray = re.test(str);
+// console.log (myArray);
