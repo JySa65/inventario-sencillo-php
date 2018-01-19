@@ -10,12 +10,15 @@ error_reporting(E_ALL);
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>GLABAL</title>
 	<!-- CSS -->
-	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="animate/animate.css">
+	<link rel="stylesheet" href="static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/css/animate.css">
+	<!-- font inconos -->
+	<link rel="stylesheet" href="static/css/icons.css">
+
 	<!-- JS -->
-	<script src="bootstrap/jquery-3.min.js"></script>
-	<script src="bootstrap/popper.min.js"></script>
-	<script src="bootstrap/bootstrap.min.js"></script>
+	<script src="static/js/jquery-3.min.js"></script>
+	<script src="static/js/popper.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
 	<style>
 	table td {
 		padding-left: 0px!important;
@@ -27,6 +30,15 @@ error_reporting(E_ALL);
 	}</style>
 </head>
 <body>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="container text-right">
+				<br>
+				<button class="btn btn-danger" id="pop" data-toggle="popover" data-placement="left"><i class="fa fa-search"></i></button>
+				<br><br>
+			</div>
+		</div>
+	</div>
 	<div id="ventOn"><?php require("templates/main.php"); ?></div>
 	<div id="ventOff" class="d-none"></div>
 	<div class="modal">
@@ -104,7 +116,6 @@ error_reporting(E_ALL);
 			}
 		});
 	</script>
-
 	<script>
 		html = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-header'></h3><div class='popover-body'>qwdqwd</div>wefwef</div>"
 		$(function () {
@@ -112,7 +123,6 @@ error_reporting(E_ALL);
 				template:html
 			})
 		})
-
 	</script>
 </body>
 </html>
