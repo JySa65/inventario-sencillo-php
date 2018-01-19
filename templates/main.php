@@ -11,7 +11,7 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 		<th>Disp</th>
 		<th onclick="toggleBuscar()">Producto</i></button></th>
 		<th>Precio</th>
-		<th>Opc.</th>
+		<th class="d-none d-sm-table-cell">Opc.</th>
 	</thead>
 	<tbody>
 		<?php
@@ -21,7 +21,7 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 			<td><?= $row["disponible"] ?></td>
 			<td><?= $row["nombre"] ?></td>
 			<td><?= number_format($row["monto"], 2, ",", ".") ?></td>
-			<td>
+			<td class="d-none d-sm-table-cell">
 				<button class="btn btn-sm btn-secondary">
 					<i class="fa fa-shopping-cart fa-fw fa-2x"></i> <i class="fa fa-minus fa-fw"></i>
 				</button> - 

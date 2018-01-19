@@ -18,6 +18,12 @@
 		padding-left: 0px!important;
 		padding-right: 0px!important;
 		vertical-align: middle!important;
+		user-drag: none; 
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-drag: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
 	}
 	table > hr {
 		margin: 1px 0px;
@@ -38,41 +44,35 @@
 	</div>
 	<div id="ventOn"><?php require("templates/main.php"); ?></div>
 	<div id="ventOff" class="d-none"></div>
-	<div class="modal fade">
-		<div class="modal-dialog modal-dialog-centered modal-lg">
+	<div class="modal fade" data-backdrop="false" style="background: rgba(0,0,0,0.8);">
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
-				<div class="modal-body">
+				<div class="modal-header border-bottom border-info">
+					<h5 class="modal-title" id="modaltitle"></h5>
+				</div>
+				<div class="modal-body p-0">
 					<div class="row">
-						<div class="col-md-4">.col-md-4</div>
-						<div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div>
-					</div>
-					<div class="row">
-						<div class="col-md-3 ml-auto">.col-md-3 .ml-auto</div>
-						<div class="col-md-2 ml-auto">.col-md-2 .ml-auto</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6 ml-auto">.col-md-6 .ml-auto</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-9">
-							Level 1: .col-sm-9
-							<div class="row">
-								<div class="col-8 col-sm-6">
-									Level 2: .col-8 .col-sm-6
+						<div class="col-12">
+							<div class="list-group">
+								<a href="#!" class="list-group-item list-group-item-action" id="add_compra"><i class="fa fa-fw fa-shopping-basket"></i> Añadir Compra</a>
+								<a href="#!" class="list-group-item list-group-item-action" id="add_venta"><i class="fa fa-fw fa-shopping-cart"></i> Añadir Venta</a>
+								<a href="#!" class="list-group-item list-group-item-action"><i class="fa fa-fw fa-file-pdf-o"></i> Reporte</a>
+								<a class="list-group-item list-group-item-action" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-fw fa-plus"></i> Mas....</a>
+								<div class="collapse multi-collapse" id="multiCollapseExample1">
+									<div class="list-group">
+										<a href="#!" class="list-group-item list-group-item-action" id="add_producto"><span class="pr-4"></span><i class="fa fa-fw fa-shopping-bag"></i> Añadir Nuevo Producto</a>
+										<a href="#!" class="list-group-item list-group-item-action" id="add_rgeneral"><span class="pr-4"></span><i class="fa fa-fw fa-file-pdf-o"></i> Reporte Genereal</a>
+									</div>
 								</div>
-								<div class="col-4 col-sm-6">
-									Level 2: .col-4 .col-sm-6
-								</div>
+								<a href="#!" class="list-group-item list-group-item-action" data-dismiss="modal"><i class="fa fa-fw fa-mail-reply"></i> Cerrar</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">Save changes</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-				</div>
 			</div>
 		</div>
 	</div>
+</div>
+</div>
 </body>
 </html>

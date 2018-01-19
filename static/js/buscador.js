@@ -101,19 +101,29 @@ function buscar(ev){
 var gtime = [];
 var idInt = 0;
 
-function MouseTouchDown(ev, el1) {
+function MouseTouchDown(ev, el) {
 	gtime = ev.timeStamp;
 	idInt = setTimeout(function(){
 		if(gtime){
-			//ev.srcElement.remove();
-			//$('.modal').modal('show');
-			console.log(el1);
-			console.log(ev)
+			a = el.children[2].textContent.toUpperCase();
+			document.getElementById("modaltitle").innerText = a;
+			add_eve("add_compra", 1, el);
+			add_eve("add_venta", 0, el);
+			$('.modal').modal('show');
 		}
 	}, 1500);
+}
+
+function add_eve(id, pos, el){
+	document.getElementById(id).onclick = function(ev2){
+		el.getElementsByTagName('button')[pos].click();
+		$('.modal').modal('hide');
+	}
 }
 
 function MouseTouchUp(ev, el) {
 	gtime = false;
 	clearTimeout(idInt);
 }
+
+$('.collapse').collapse()
