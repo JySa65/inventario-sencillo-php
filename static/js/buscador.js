@@ -22,7 +22,6 @@ window.addEventListener('load', function(){
 });
 
 $.fn.extend({
-	//
 	animateCss: function (animationName, callback) {
 		
 		/*
@@ -189,7 +188,7 @@ function paginator(pagact, tr){
 		pagact = 1;
 	}
 	xy = tr;
-	var datoMues = 20;
+	var datoMues = 10;
 	numbPage = Math.ceil(tr.length/datoMues);
 	if(pagact <= numbPage){
 		total = pagact*datoMues;
