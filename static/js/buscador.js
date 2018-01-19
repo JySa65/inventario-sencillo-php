@@ -225,5 +225,5 @@ function paginator(pagact, tr){
 	}
 	next = '<li class="page-item'+ disabled +'"><a class="page-link" href="#" onclick="paginator(' + pagact + ', xy)">>></a></li>'
 	$("#pagina").html(prev + html + next)
-	$("#preTable").css({"min-height": (datoMues + 1) * 65});
+	$("#preTable").css({"min-height": (total2 + 1) * 65});
 }
