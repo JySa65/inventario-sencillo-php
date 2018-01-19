@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["prod"]) && !empty($_GET[
 	$nToken = &$_GET["token"]; 
 	?>
 	<div class="nav text-center bg-info">
-		<button type="button" class="btn btn-info" style="box-shadow:none;" onclick="cambiarVentana();">VOLVER</button>
+		<button type="button" class="btn btn-info border-right" style="box-shadow:none;" onclick="cambiarVentana();"><i class="fa fa-reply fa-fw"></i> VOLVER</button>
 		<div class="nav-link font-weigh-bold"><h5>Compra de Producto</h5></div>
 	</div>	
 	<div class="container">
