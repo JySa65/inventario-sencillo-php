@@ -7,13 +7,11 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 ?>
 <table class="table table-bordered table-hover table-striped text-center">
 	<thead>
-		<tr>
-			<th class="hidden-sm-down">Cod</th>
-			<th>Disp</th>
-			<th>Producto <button class="btn btn-danger" id="pop" data-toggle="popover" data-placement="bottom"><i class="fa fa-search"></i></button></th>
-			<th>Precio</th>
-			<th>Opc.</th>
-		</tr>
+		<th class="hidden-sm-down">Cod</th>
+		<th>Disp</th>
+		<th>Producto <button class="btn btn-danger" id="pop" data-toggle="popover" data-placement="bottom"><i class="fa fa-search"></i></button></th>
+		<th>Precio</th>
+		<th>Opc.</th>
 	</thead>
 	<tbody>
 		<?php

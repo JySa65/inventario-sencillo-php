@@ -19,6 +19,7 @@ error_reporting(E_ALL);
 	<script src="static/js/jquery-3.min.js"></script>
 	<script src="static/js/popper.min.js"></script>
 	<script src="static/js/bootstrap.min.js"></script>
+	<script src="static/js/buscador.js"></script>
 	<style>
 	table td {
 		padding-left: 0px!important;
@@ -68,6 +69,7 @@ error_reporting(E_ALL);
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 	<script>
 		function cargarVentana(datos){
 			$.ajax({
@@ -115,5 +117,7 @@ error_reporting(E_ALL);
 			})
 		})
 	</script>
+=======
+>>>>>>> eb1a052790350cec048ec9fd288b37719bd27518
 </body>
 </html>

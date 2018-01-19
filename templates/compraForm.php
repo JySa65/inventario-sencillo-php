@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["prod"]) && !empty($_GET[
 					<input class="form-control" type="cant" id="cant" placeholder="Cantidad: 1 2 3...">
 				</div>
 				<br>
-				<button type="submit" class="btn btn-block btn-success btn-lg"><i class="fa fa-save fa-fw fa-3x"> SAVE</i> Guardar</button>
+				<button type="submit" class="btn btn-block btn-success"><h3><i class="fa fa-save fa-fw fa-3x"></i> Guardar</h3></button>
 			</div>
 		</form>
 	</div>
