@@ -31,20 +31,22 @@ error_reporting(E_ALL);
 	}</style>
 </head>
 <body>
-	<div class="input-group mb-3">
-		<div id="tgBuscar" class="d-none">
-			<hr>
+	<div id="tgBuscar" class="d-none">
+		<hr>
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
-					<input type="text" class="form-control" id="id_buscar" placeholder="Ingrese Algo...!" onkeyup="buscar()" aria-describedby="basic-addon2">
-					<div class="input-group-append">
-						<span class="input-group-text" id="basic-addon2">@example.com</span>
+					<div class="input-group">
+						<input type="text" class="form-control" id="id_buscar" placeholder="Ingrese Producto...!">
+						<div class="input-group-append">
+							<button class="btn btn-danger" onclick="toggleBuscar()"><i class="fa fa-times"></i></button>
+						</div>
 					</div>
 				</div>
 			</div>
-			<hr>
 		</div>
-	</div>	
+	</div>
+	
 	<div id="ventOn"><?php require("templates/main.php"); ?></div>
 	<div id="ventOff" class="d-none"></div>
 	<div class="modal">

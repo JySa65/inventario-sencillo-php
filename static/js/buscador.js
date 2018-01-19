@@ -1,8 +1,7 @@
 window.addEventListener('load', function(){
-	function abrirVentana(){
-
-	}
-
+	id_b = document.getElementById('id_buscar');	
+	//id_b.addEventListener('blur', toggleBuscar);
+	id_b.addEventListener('keyup', buscar);
 })
 $.fn.extend({
 	animateCss: function (animationName, callback) {
@@ -16,15 +15,20 @@ $.fn.extend({
 		return this;
 	}
 });
+
 function toggleBuscar(){
 	var tb = $("#tgBuscar");
 	var tbi = tb.find("input");
 	if(tb.hasClass("slideInDown")){
 		tbi.attr("disabled", "");
+		$('#pop').removeAttr('hidden');
 		tb.animateCss("slideOutUp fixed-top", function(){});
 	}else{	
-		tbi.val("").removeAttr("disabled").focus();
-		tb.animateCss("slideInDown fixed-top", function(){});
+		$('#pop').attr('hidden', '');
+		tbi.val("").removeAttr("disabled")
+		tb.animateCss("slideInDown fixed-top", function(){
+			tbi.focus();
+		});
 	}
 }
 function cargarVentana(datos){
@@ -55,7 +59,10 @@ function buscar(ev){
 	datos = document.getElementsByTagName('table')[0].children[1].children;
 	for(var i = 0; i<datos.length; i++){
 		texto = datos[i].children[2].textContent;
-		console.log(ev);
+		letra = ev.key
+		if (letra in texto){
+			console.log('si')
+		}
 	}
 	return true;
 }
