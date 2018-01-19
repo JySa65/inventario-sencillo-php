@@ -111,7 +111,7 @@ error_reporting(E_ALL);
 		html = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-header'></h3><div class='popover-body'>qwdqwd</div>wefwef</div>"
 		$(function () {
 			$('#pop').popover({
-				template:html
+				template: html
 			})
 		})
 	</script>
