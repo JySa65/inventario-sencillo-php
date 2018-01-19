@@ -5,6 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>GLABAL</title>
 	<!-- CSS -->
+	<link rel="icon" href="static/img/favicon.png" type="image/png"/>
 	<link rel="stylesheet" href="static/css/bootstrap.min.css">
 	<link rel="stylesheet" href="static/css/animate.css">
 	<link rel="stylesheet" href="static/css/icons.css">
@@ -74,5 +75,6 @@
 			</div>
 		</div>
 	</div>
+	<div id="contentAlert" style='position:fixed;top:10px;left:10px;width: calc(100% - 20px);'></div>
 </body>
 </html>
