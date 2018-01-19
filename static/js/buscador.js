@@ -22,10 +22,17 @@ window.addEventListener('load', function(){
 });
 
 $.fn.extend({
+	//
 	animateCss: function (animationName, callback) {
-		var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+		
+		/*
+		this.slideToggle("slow", function(){
+			if (callback) {
+				callback();
+			}
+		});*/
 		this.removeClass();
-		this.addClass('animated ' + animationName).one(animationEnd, function() {
+		this.addClass('animated ' + animationName).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
 			if (callback) {
 				callback();
 			}
@@ -116,7 +123,7 @@ function ocultarinpu(){
 }
 function trr(tipo){
 	if(!tipo){
-		 tipo = 1;
+		tipo = 1;
 	}
 	if(tipo == 1){
 		return document.getElementsByTagName('table')[0].children[1].children; 	
@@ -219,4 +226,5 @@ function paginator(pagact, tr){
 	}
 	next = '<li class="page-item'+ disabled +'"><a class="page-link" href="#" onclick="paginator(' + pagact + ', xy)">>></a></li>'
 	$("#pagina").html(prev + html + next)
+	$("#preTable").css({"min-height": (datoMues + 1) * 65});
 }

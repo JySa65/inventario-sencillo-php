@@ -2,12 +2,12 @@
 require(__DIR__ . "/../funciones.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	header("Content-type: application/json; charset=utf-8");
+	$rsp = array("title" => "Guardado no completado!", "content" => "Un error inesperado! favor comunicarse con los desarrolladores de la aplicacion.", "color" => "danger", "icon" => "thumbs-o-down", "error" => 1);
 	if(postExiste(array("token", "cant", "pre", "disp"))) {
 		$_POST['pre'] = str_replace(",", ".", $_POST['pre']);
 		$token = &$_POST['token'];
 		$pre = &$_POST['pre'];
 		$cant = &$_POST['cant'];
-		$rsp = array("title" => "Guardado no completado!", "content" => "Un error inesperado! favor comunicarse con los desarrolladores de la aplicacion.", "color" => "danger", "icon" => "thumbs-o-down", "error" => 1);
 		if(is_positive($cant)){
 			if(is_positive($pre)){
 				require(__DIR__ . "/../conexion.php");
