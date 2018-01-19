@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,9 +12,7 @@ error_reporting(E_ALL);
 	<!-- CSS -->
 	<link rel="stylesheet" href="static/css/bootstrap.min.css">
 	<link rel="stylesheet" href="static/css/animate.css">
-	<!-- font inconos -->
 	<link rel="stylesheet" href="static/css/icons.css">
-
 	<!-- JS -->
 	<script src="static/js/jquery-3.min.js"></script>
 	<script src="static/js/popper.min.js"></script>
