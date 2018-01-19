@@ -1,6 +1,6 @@
 window.addEventListener('load', function(){
 	id_b = document.getElementById('id_buscar');	
-	id_b.addEventListener('blur', toggleBuscar);
+	//id_b.addEventListener('blur', toggleBuscar);
 	id_b.addEventListener('keyup', buscar);
 })
 $.fn.extend({
@@ -23,7 +23,7 @@ function toggleBuscar(){
 		tbi.attr("disabled", "");
 		tb.animateCss("slideOutUp fixed-top", function(){});
 	}else{	
-		tbi.val("").removeAttr("disabled")
+		tbi.val("").removeAttr("disabled");
 		tb.animateCss("slideInDown fixed-top", function(){
 			tbi.focus();
 		});
@@ -42,7 +42,19 @@ function cargarVentana(datos){
 			cambiarVentana();
 		}
 	});
-	
+}
+function hacerSubmit(ev){
+	$.ajax({
+		url: ev.target.action,
+		type: ev.target.method,
+		dataType: 'jsonp',
+		data:  $(ev.target).serialize()
+	})
+	.done(function(data) {
+		console.log(data);
+		$("body").append("<div style='top:10px;right:10px;position:fixed;width: calc(100% - 20px);'><div class='alert alert-dismissible alert-" + data.color + " fade show'><h4 class='alert-heading'>" + data.title + "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></h4><p>" + data.content + "</p></div></div>");		
+	});
+	return false;
 }
 function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "slide"){
 	var eOut = $("#"+elementOut);
