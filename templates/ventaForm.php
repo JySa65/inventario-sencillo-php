@@ -43,14 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		<button type="navbar-brand" class="btn btn-info" style="box-shadow:none;" onclick="cambiarVentana()"><i class="fa fa-reply fa-fw"></i> VOLVER</button>
 		<ul class="navbar-nav flex-row">
 			<li class="nav-item">
-				<a class="nav-link font-weigh-bold">Registrar Compra de Producto</a>
+				<a class="nav-link font-weigh-bold">Registrar Ventas de Producto</a>
 			</li>
 		</ul>
 	</nav>
 	<br><br>
 	<div class="container" style="overflow:auto;">
-		<form action="templates/compraForm.php" name="formCompra" method="POST" onsubmit="return hacerSubmit(event)">
-			<input name="disp" type="hidden" value="<?= $nDisp; ?>">
+		<form action="templates/ventaForm.php" name="formCompra" method="POST" onsubmit="return hacerSubmit(event)">
 			<input name="token" type="hidden" value="<?= $nToken; ?>">
 			<br>
 			<div class="form-row">
@@ -59,8 +58,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 					<input class="form-control text-center" type="text" name="prod" id="prod" placeholder="Producto" disabled value="<?= $nProd; ?>">
 				</div>
 				<div class="form-group col-12">
-					<label for="cant">Cantidad Vendida:</label>
-					<input class="form-control text-center" type="text" name="cant" id="cant">
+					<label for="cant">Disponible (Actualmente):</label>
+					<input class="form-control text-center" type="text" name="cant" id="cant" onkeyup="calcular(event)">
+				</div>
+				<div class="form-group col-12">
+					<label for="disp">Disponible (Anteriormente):</label>
+					<input class="form-control text-center" type="text" name="disp" id="disp" disabled value="<?= $nDisp; ?>">
 				</div>
 				<div class="form-group col-12">
 					<label for="pre">Precio de Venta:</label>
@@ -68,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 				</div>
 				<div class="form-group col-12">
 					<label for="tot">Total de Ingresos:</label>
-					<input class="form-control text-center" type="text" name="tot" id="tot" disabled>
+					<input class="form-control text-center" type="text" name="tot" id="tot" disabled value="0">
 				</div>
 				<div class="form-group col-12">
 					<br>
@@ -78,5 +81,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		</form>
 		<br>
 	</div>
+	<script>
+		function calcular(ev){
+			var icant = ev.srcElement;
+			var cant = parseFloat(icant.value);
+			var disp =  parseFloat(document.getElementsByName("disp")[0].value);
+			var pre = parseFloat(document.getElementsByName("pre")[0].value);
+			var tot = document.getElementsByName("tot")[0];
+			if(disp < cant){
+				icant.value = disp;
+				tot.value = isp * pre;
+			}else{
+				tot.value = (disp - cant) * pre;
+			}
+		}	
+	</script>
 	<?php 
 } ?>

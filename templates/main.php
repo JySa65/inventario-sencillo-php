@@ -24,10 +24,10 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 			<td><?= $row["nombre"] ?></td>
 			<td><?= number_format($row["monto"], 2, ",", ".") ?></td>
 			<td class="d-none d-sm-table-cell">
-				<button class="btn btn-sm btn-secondary">
+				<button class="btn btn-sm btn-secondary" onclick="cargarVentana('templates/ventaForm.php', {prod: '<?= $row["nombre"] ?>', token: '<?= $row["id"] ?>', precio: '<?= number_format($row["monto"], 2, ",", "") ?>', disp: '<?= $row["disponible"] ?> '});">
 					<i class="fa fa-shopping-cart fa-fw fa-2x"></i> <i class="fa fa-minus fa-fw"></i>
 				</button> - 
-				<button class="btn btn-sm btn-info" onclick="cargarVentana({prod: '<?= $row["nombre"] ?>', token: '<?= $row["id"] ?>', precio: '<?= number_format($row["monto"], 2, ",", "") ?>', disp: '<?= $row["disponible"] ?> '});">
+				<button class="btn btn-sm btn-info" onclick="cargarVentana('templates/compraForm.php', {prod: '<?= $row["nombre"] ?>', token: '<?= $row["id"] ?>', precio: '<?= number_format($row["monto"], 2, ",", "") ?>', disp: '<?= $row["disponible"] ?> '});">
 					<i class="fa fa-shopping-cart fa-fw fa-2x"></i> <i class="fa fa-plus fa-fw"></i>
 				</button>
 			</td>

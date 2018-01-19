@@ -10,10 +10,11 @@
 	<link rel="stylesheet" href="static/css/animate.css">
 	<link rel="stylesheet" href="static/css/icons.css">
 	<!-- JS -->
+
 	<script src="static/js/jquery-3.min.js"></script>
 	<script src="static/js/popper.min.js"></script>
 	<script src="static/js/bootstrap.min.js"></script>
-	<script src="static/js/buscador.js"></script>
+	<script src="static/js/buscador.js"></script>	
 	<style>
 	table td {
 		padding-left: 0px!important;

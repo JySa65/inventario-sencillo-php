@@ -13,7 +13,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 				require(__DIR__ . "/../conexion.php");
 				$rs = $con->query("INSERT INTO registros(id, id_prod, cant, tipo) VALUES (NULL, '".$token."' , '".$cant."', '1')");
 				if($rs){
-					$con->query("INSERT INTO precios(id, id_prod, monto) VALUES (NULL, '".$token."', '".$pre."')");
+					if ($ppre = $con->query("SELECT (SELECT aux.monto FROM precios AS aux WHERE aux.id=MAX(pre.id)) AS monto FROM productos AS pro LEFT JOIN precios AS pre ON '".$token."'=pre.id_prod GROUP BY pre.id_prod")){
+						if ($row = $ppre->fetch_assoc()){ 
+							if($row["monto"] == $pre){
+								$con->query("INSERT INTO precios(id, id_prod, monto) VALUES (NULL, '".$token."', '".$pre."')");		
+							}
+						}
+					}
 					$con->query("UPDATE productos SET disponible='".($_POST['disp'] + $cant)."' WHERE id= '".$token."'");
 					$rsp["error"] = 0;
 					$rsp["icon"] = "thumbs-o-up";

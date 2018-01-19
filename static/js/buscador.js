@@ -1,8 +1,9 @@
 window.addEventListener('load', function(){
-	id_b = document.getElementById('id_buscar');	
-	//id_b.addEventListener('blur', toggleBuscar);
+	id_b = document.getElementById('id_buscar');
 	id_b.addEventListener('keyup', buscar);
-	dat = trr()
+	
+	dat = trr();
+	
 	for(i=0; i<dat.length; i++){
 		dat[i].addEventListener('mousedown', function(ev){
 			MouseTouchDown(ev, this);
@@ -17,9 +18,7 @@ window.addEventListener('load', function(){
 			MouseTouchUp(event, this);
 		});
 	}
-
-
-})
+});
 $.fn.extend({
 	animateCss: function (animationName, callback) {
 		var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
@@ -38,30 +37,31 @@ function toggleBuscar(){
 	var tbi = tb.find("input");
 	if(tb.hasClass("slideInDown")){
 		tbi.attr("disabled", "");
-		tb.animateCss("slideOutUp fixed-top", function(){});
-		$('#pop').removeAttr('hidden');
+		//NO FUNCIONA EN LA TABLET
+		tb.animateCss("slideOutUp fixed-top", function(){ });
 	}else{	
 		tbi.val("").removeAttr("disabled");
 		tb.animateCss("slideInDown fixed-top", function(){
 			tbi.focus();
 		});
-		$('#pop').attr('hidden', '');
 	}
 }
-function cargarVentana(datos){
+
+
+function cargarVentana(template, datos){
 	$.ajax({
-		url: 'templates/compraForm.php',
+		url: template,
 		type: 'GET',
 		dataType: 'text/html',
 		data: datos
-	})
-	.always(function(data) {
+	}).always(function(data) {
 		if(data.readyState == 4 && data.status == 200){
 			$("#ventOff").html(data.responseText);
 			cambiarVentana();
 		}
 	});
 }
+/*
 function hacerSubmit(ev){
 	$.ajax({
 		url: ev.target.action,
@@ -83,7 +83,18 @@ function hacerSubmit(ev){
 	});
 	return false;
 }
-function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "slide"){
+*/
+/*
+function cambiarVentana(elementIn, elementOut, effect){
+	if(!elementIn){
+		elementIn = "ventOff";
+	}
+	if(!elementOut){
+		elementOut = "ventOn";
+	}
+	if(!effect){
+		effect = "slide";
+	}
 	var eOut = $("#"+elementOut);
 	var eIn = $("#"+elementIn);
 	eOut.animateCss(effect + "OutLeft fixed-top", function(){});
@@ -92,35 +103,37 @@ function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "
 		eIn.attr("id", elementOut);
 	});
 }
+*/
 function trr(){
 	return document.getElementsByTagName('table')[0].children[1].children; 
 }
-
 function buscar(ev){
-	datos = trr()
-	inp = ev.target.value.toUpperCase();
+	var i;
+	var datos = trr();
+	var inp = ev.target.value.toUpperCase();
 	if(inp.length > 0){
 		var re;
-		for(var i = 0; i<datos.length; i++){
+		for(i=0; i<datos.length; i++) {
 			texto = datos[i].children[2].textContent.toUpperCase();
 			letra = ev.key;
-			re = new RegExp(`(^|.)+${inp}+(.|$)`);
+			re = new RegExp("(^|.)+" + inp + "+(.|$)");
 			if (!re.test(texto)){
 				datos[i].classList.add('d-none');
 			}else{
 				datos[i].classList.remove('d-none');
-			}
+			} 
+
 		}
 	}else{
-		for(var i = 0; i<datos.length; i++){
+		for(i = 0; i<datos.length; i++){
 			datos[i].classList.remove('d-none');
 		}
 	}
 	return true;
 }
+
 var gtime = [];
 var idInt = 0;
-
 function MouseTouchDown(ev, el) {
 	gtime = ev.timeStamp;
 	idInt = setTimeout(function(){
@@ -145,5 +158,3 @@ function MouseTouchUp(ev, el) {
 	gtime = false;
 	clearTimeout(idInt);
 }
-
-$('.collapse').collapse()
