@@ -59,12 +59,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 					<input class="form-control text-center" type="text" name="prod" id="prod" placeholder="Producto" disabled value="<?= $nProd; ?>">
 				</div>
 				<div class="form-group col-12">
-					<label for="cant">Cantidad Adquirida:</label>
+					<label for="cant">Cantidad Vendida:</label>
 					<input class="form-control text-center" type="text" name="cant" id="cant">
 				</div>
 				<div class="form-group col-12">
 					<label for="pre">Precio de Venta:</label>
-					<input class="form-control text-center" type="text" name="pre" id="pre" placeholder="Monto Ej: ####,##" value="<?= $nPre; ?>">
+					<input class="form-control text-center" type="text" name="pre" id="pre" disabled value="<?= $nPre; ?>">
+				</div>
+				<div class="form-group col-12">
+					<label for="tot">Total de Ingresos:</label>
+					<input class="form-control text-center" type="text" name="tot" id="tot" disabled>
 				</div>
 				<div class="form-group col-12">
 					<br>

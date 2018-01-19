@@ -70,8 +70,16 @@ function hacerSubmit(ev){
 		data:  $(ev.target).serialize()
 	})
 	.done(function(data) {
-		console.log(data);
-		$("body").append("<div style='top:10px;right:10px;position:fixed;width: calc(100% - 20px);'><div class='alert alert-dismissible alert-" + data.color + " fade show'><h4 class='alert-heading'>" + data.title + "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></h4><p>" + data.content + "</p></div></div>");		
+		var el = $("#contentAlert").append("<div class='animated fadeIn'><div class='alert alert-dismissible alert-" + data.color + "'><h4 class='alert-heading'><i class='fa fa-fw fa-" + data.icon + "'></i>" + data.title + "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></h4><p>" + data.content + "</p></div></div>");
+		el = el.children(0);
+		setTimeout(function(ev){
+			el.animateCss("fadeOut", function(){
+				el.remove();
+				if(data.error==0){
+					window.location.reload();
+				}
+			});
+		}, 3000);
 	});
 	return false;
 }
