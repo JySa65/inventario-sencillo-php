@@ -2,17 +2,6 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-<<<<<<< HEAD
-=======
-
-$ho = "localhost";
-$us = "root";
-$pa = "";
-$db = "inventario";
-$po = "3306";
-$con = mysqli_connect($ho, $us, $pa, $db, $po);
-$prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE aux.id=MAX(pre.id)) AS monto FROM productos AS pro LEFT JOIN precios AS pre ON pro.id=pre.id_prod GROUP BY pre.id_prod");
->>>>>>> 32b23602630b425372752373cf1912ce51176573
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,12 +10,15 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>GLABAL</title>
 	<!-- CSS -->
-	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="animate/animate.css">
+	<link rel="stylesheet" href="static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/css/animate.css">
+	<!-- font inconos -->
+	<link rel="stylesheet" href="static/css/icons.css">
+
 	<!-- JS -->
-	<script src="bootstrap/jquery-3.min.js"></script>
-	<script src="bootstrap/popper.min.js"></script>
-	<script src="bootstrap/bootstrap.min.js"></script>
+	<script src="static/js/jquery-3.min.js"></script>
+	<script src="static/js/popper.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
 	<style>
 	table td {
 		padding-left: 0px!important;
@@ -38,46 +30,17 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 	}</style>
 </head>
 <body>
-<<<<<<< HEAD
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="container text-right">
+				<br>
+				<button class="btn btn-danger" id="pop" data-toggle="popover" data-placement="left"><i class="fa fa-search"></i></button>
+				<br><br>
+			</div>
+		</div>
+	</div>
 	<div id="ventOn"><?php require("templates/main.php"); ?></div>
 	<div id="ventOff" class="d-none"><label onclick="cambiarVentana();">cargandoo...</label></div>
-=======
-	<div id="ventana1">
-		<table class="table table-bordered table-hover table-striped text-center">
-			<thead>
-				<tr>
-					<th class="hidden-sm-down">Cod</th>
-					<th>Disp</th>
-					<th>Producto <input type="submit" onclick="cambiarVentana(1);"></th>
-					<th>Precio</th>
-					<th>Opc.</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				while ($row = $prod->fetch_assoc()){
-					?>					
-					<tr>
-						<td class="hidden-sm-down"><?= $row["id"] ?></td>
-						<td><?= $row["disponible"] ?></td>
-						<td><?= $row["nombre"] ?></td>
-						<td><?= number_format($row["monto"], 2) ?></td>
-						<td><button class="btn btn-sm btn-primary">VENTA</button><hr><button class="btn btn-sm btn-danger">COMPRA</button></td>
-					</tr>
-					<?php
-				}
-				?>
-			</tbody>
-		</table>
-	</div>
-	<div class="hiden">
-		<div id="ventana2">hola</div>
-	</div>
-	
-		<div class="text-right">
-			<a tabindex="0" class="btn btn-lg btn-danger" id="pop">Dismissible popover</a>
-		</div>
->>>>>>> 32b23602630b425372752373cf1912ce51176573
 	<div class="modal">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
@@ -141,15 +104,15 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 			}
 		});
 	</script>
-
 	<script>
-			html = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-header'></h3><div class='popover-body'>qwdqwd</div>wefwef</div>"
-			$(function () {
-				$('#pop').popover({
-					template:html
-				})
+		hl = `<input type="text" class="form-control" id="id_buscar" placeholder="Ingrese Algo...!">`
+		$(function () {
+			$('#pop').popover({
+				html:true,
+				content:hl
 			})
+		})
 
-		</script>
+	</script>
 </body>
 </html>
