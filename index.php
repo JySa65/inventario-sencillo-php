@@ -69,55 +69,5 @@ error_reporting(E_ALL);
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
-	<script>
-		function cargarVentana(datos){
-			$.ajax({
-				url: 'templates/compraForm.php',
-				type: 'GET',
-				dataType: 'text/html',
-				data: datos
-			})
-			.always(function(data) {
-				if(data.readyState == 4 && data.status == 200){
-					console.log(data);
-					$("#ventOff").html(data.responseText);
-					cambiarVentana();
-				}
-			});
-			
-		}
-		function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "slide"){
-			var eOut = $("#"+elementOut);
-			var eIn = $("#"+elementIn);
-			eOut.animateCss(effect + "OutLeft fixed-top", function(){});
-			eIn.animateCss(effect + "InRight", function(){
-				eOut.attr("id", elementIn);
-				eIn.attr("id", elementOut);
-			});
-		}
-		$.fn.extend({
-			animateCss: function (animationName, callback) {
-				var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-				this.removeClass();
-				this.addClass('animated ' + animationName).one(animationEnd, function() {
-					if (callback) {
-						callback();
-					}
-				});
-				return this;
-			}
-		});
-	</script>
-	<script>
-		html = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-header'></h3><div class='popover-body'>qwdqwd</div>wefwef</div>"
-		$(function () {
-			$('#pop').popover({
-				template: html
-			})
-		})
-	</script>
-=======
->>>>>>> eb1a052790350cec048ec9fd288b37719bd27518
 </body>
 </html>

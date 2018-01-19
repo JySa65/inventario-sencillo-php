@@ -27,6 +27,22 @@ function toggleBuscar(){
 		tb.animateCss("slideInDown fixed-top", function(){});
 	}
 }
+function cargarVentana(datos){
+	$.ajax({
+		url: 'templates/compraForm.php',
+		type: 'GET',
+		dataType: 'text/html',
+		data: datos
+	})
+	.always(function(data) {
+		if(data.readyState == 4 && data.status == 200){
+			console.log(data);
+			$("#ventOff").html(data.responseText);
+			cambiarVentana();
+		}
+	});
+	
+}
 function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "slide"){
 	var eOut = $("#"+elementOut);
 	var eIn = $("#"+elementIn);
