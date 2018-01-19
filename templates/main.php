@@ -10,7 +10,7 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 		<tr>
 			<th class="hidden-sm-down">Cod</th>
 			<th>Disp</th>
-			<th>Producto <input type="submit" onclick="cambiarVentana();"></th>
+			<th>Producto <button class="btn btn-danger" id="pop" data-toggle="popover" data-placement="bottom"><i class="fa fa-search"></i></button></th>
 			<th>Precio</th>
 			<th>Opc.</th>
 		</tr>

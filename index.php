@@ -30,15 +30,6 @@ error_reporting(E_ALL);
 	}</style>
 </head>
 <body>
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="container text-right">
-				<br>
-				<button class="btn btn-danger" id="pop" data-toggle="popover" data-placement="left"><i class="fa fa-search"></i></button>
-				<br><br>
-			</div>
-		</div>
-	</div>
 	<div id="ventOn"><?php require("templates/main.php"); ?></div>
 	<div id="ventOff" class="d-none"><label onclick="cambiarVentana();">cargandoo...</label></div>
 	<div class="modal">
