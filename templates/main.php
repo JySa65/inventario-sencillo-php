@@ -7,7 +7,7 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 ?>
 <table class="table table-bordered table-hover table-striped text-center">
 	<thead>
-		<th class="hidden-sm-down">Cod</th>
+		<th class="d-none d-sm-table-cell">Cod</th>
 		<th>Disp</th>
 		<th>Producto <button class="btn btn-danger" id="pop" onclick="toggleBuscar()"><i class="fa fa-search"></i></button></th>
 		<th>Precio</th>
@@ -17,16 +17,15 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 		<?php
 		while ($row = $prod->fetch_assoc()){ ?>					
 		<tr>
-			<td class="hidden-sm-down"><?= $row["id"] ?></td>
+			<td class="d-none d-sm-table-cell"><?= $row["id"] ?></td>
 			<td><?= $row["disponible"] ?></td>
 			<td><?= $row["nombre"] ?></td>
 			<td><?= number_format($row["monto"], 2, ",", ".") ?></td>
 			<td>
 				<button class="btn btn-sm btn-secondary">
 					<i class="fa fa-shopping-cart fa-fw fa-2x"></i> <i class="fa fa-minus fa-fw"></i>
-				</button>
-				<hr>
-				<button class="btn btn-sm btn-info" onclick="cargarVentana({prod: '<?= $row["nombre"] ?>', token: '<?= $row["id"] ?>'});">
+				</button> - 
+				<button class="btn btn-sm btn-info" onclick="cargarVentana({prod: '<?= $row["nombre"] ?>', token: '<?= $row["id"] ?>', precio: '<?= number_format($row["monto"], 2, ",", "") ?>', disp: '<?= $row["disponible"] ?> '});">
 					<i class="fa fa-shopping-cart fa-fw fa-2x"></i> <i class="fa fa-plus fa-fw"></i>
 				</button>
 			</td>
