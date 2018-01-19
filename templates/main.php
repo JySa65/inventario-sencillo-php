@@ -24,7 +24,7 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 				<td><?= $row["disponible"] ?></td>
 				<td><?= $row["nombre"] ?></td>
 				<td><?= number_format($row["monto"], 2) ?></td>
-				<td><button class="btn btn-sm btn-primary">VENTA</button><hr><button class="btn btn-sm btn-danger">COMPRA</button></td>
+				<td><button class="btn btn-sm btn-primary">VENTA</button><hr><button class="btn btn-sm btn-info" onclick="cargarVentana({prod: '<?= $row["nombre"] ?>', cod: '<?= $row["id"] ?>'});">COMPRA</button></td>
 			</tr>
 			<?php
 		}

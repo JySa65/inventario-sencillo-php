@@ -2,17 +2,6 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-<<<<<<< HEAD
-=======
-
-$ho = "localhost";
-$us = "root";
-$pa = "";
-$db = "inventario";
-$po = "3306";
-$con = mysqli_connect($ho, $us, $pa, $db, $po);
-$prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE aux.id=MAX(pre.id)) AS monto FROM productos AS pro LEFT JOIN precios AS pre ON pro.id=pre.id_prod GROUP BY pre.id_prod");
->>>>>>> 32b23602630b425372752373cf1912ce51176573
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -38,46 +27,8 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 	}</style>
 </head>
 <body>
-<<<<<<< HEAD
 	<div id="ventOn"><?php require("templates/main.php"); ?></div>
-	<div id="ventOff" class="d-none"><label onclick="cambiarVentana();">cargandoo...</label></div>
-=======
-	<div id="ventana1">
-		<table class="table table-bordered table-hover table-striped text-center">
-			<thead>
-				<tr>
-					<th class="hidden-sm-down">Cod</th>
-					<th>Disp</th>
-					<th>Producto <input type="submit" onclick="cambiarVentana(1);"></th>
-					<th>Precio</th>
-					<th>Opc.</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				while ($row = $prod->fetch_assoc()){
-					?>					
-					<tr>
-						<td class="hidden-sm-down"><?= $row["id"] ?></td>
-						<td><?= $row["disponible"] ?></td>
-						<td><?= $row["nombre"] ?></td>
-						<td><?= number_format($row["monto"], 2) ?></td>
-						<td><button class="btn btn-sm btn-primary">VENTA</button><hr><button class="btn btn-sm btn-danger">COMPRA</button></td>
-					</tr>
-					<?php
-				}
-				?>
-			</tbody>
-		</table>
-	</div>
-	<div class="hiden">
-		<div id="ventana2">hola</div>
-	</div>
-	
-		<div class="text-right">
-			<a tabindex="0" class="btn btn-lg btn-danger" id="pop">Dismissible popover</a>
-		</div>
->>>>>>> 32b23602630b425372752373cf1912ce51176573
+	<div id="ventOff" class="d-none"></div>
 	<div class="modal">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
@@ -115,8 +66,21 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 		</div>
 	</div>
 	<script>
-		function abrirVentana(){
-
+		function cargarVentana(datos){
+			$.ajax({
+				url: 'templates/compraForm.php',
+				type: 'GET',
+				dataType: 'text/html',
+				data: datos
+			})
+			.always(function(data) {
+				if(data.readyState == 4 && data.status == 200){
+					console.log(data);
+					$("#ventOff").html(data.responseText);
+					cambiarVentana();
+				}
+			});
+			
 		}
 		function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "slide"){
 			var eOut = $("#"+elementOut);
@@ -135,7 +99,6 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 					if (callback) {
 						callback();
 					}
-					//$(this).removeClass('animated ' + animationName);
 				});
 				return this;
 			}
@@ -143,13 +106,13 @@ $prod = $con->query("SELECT pro.*, (SELECT aux.monto FROM precios AS aux WHERE a
 	</script>
 
 	<script>
-			html = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-header'></h3><div class='popover-body'>qwdqwd</div>wefwef</div>"
-			$(function () {
-				$('#pop').popover({
-					template:html
-				})
+		html = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-header'></h3><div class='popover-body'>qwdqwd</div>wefwef</div>"
+		$(function () {
+			$('#pop').popover({
+				template:html
 			})
+		})
 
-		</script>
+	</script>
 </body>
 </html>
