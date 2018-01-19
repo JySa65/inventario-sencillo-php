@@ -2,6 +2,23 @@ window.addEventListener('load', function(){
 	id_b = document.getElementById('id_buscar');	
 	//id_b.addEventListener('blur', toggleBuscar);
 	id_b.addEventListener('keyup', buscar);
+	dat = trr()
+	for(i=0; i<dat.length; i++){
+		dat[i].addEventListener('mousedown', function(ev){
+			MouseTouchDown(ev, this);
+		});
+		dat[i].addEventListener('mouseup', function(ev){
+			MouseTouchUp(event, this);
+		});
+		dat[i].addEventListener('touchstart', function(ev){
+			MouseTouchDown(ev, this);
+		});
+		dat[i].addEventListener('touchend',function(ev){
+			MouseTouchUp(event, this);
+		});
+	}
+
+
 })
 $.fn.extend({
 	animateCss: function (animationName, callback) {
@@ -22,11 +39,13 @@ function toggleBuscar(){
 	if(tb.hasClass("slideInDown")){
 		tbi.attr("disabled", "");
 		tb.animateCss("slideOutUp fixed-top", function(){});
+		$('#pop').removeAttr('hidden');
 	}else{	
 		tbi.val("").removeAttr("disabled");
 		tb.animateCss("slideInDown fixed-top", function(){
 			tbi.focus();
 		});
+		$('#pop').attr('hidden', '');
 	}
 }
 function cargarVentana(datos){
@@ -65,8 +84,12 @@ function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "
 		eIn.attr("id", elementOut);
 	});
 }
+function trr(){
+	return document.getElementsByTagName('table')[0].children[1].children; 
+}
+
 function buscar(ev){
-	datos = document.getElementsByTagName('table')[0].children[1].children;
+	datos = trr()
 	inp = ev.target.value.toUpperCase();
 	if(inp.length > 0){
 		var re;
@@ -86,4 +109,23 @@ function buscar(ev){
 		}
 	}
 	return true;
+}
+var gtime = [];
+var idInt = 0;
+
+function MouseTouchDown(ev, el1) {
+	gtime = ev.timeStamp;
+	idInt = setTimeout(function(){
+		if(gtime){
+			//ev.srcElement.remove();
+			//$('.modal').modal('show');
+			console.log(el1);
+			console.log(ev)
+		}
+	}, 1500);
+}
+
+function MouseTouchUp(ev, el) {
+	gtime = false;
+	clearTimeout(idInt);
 }

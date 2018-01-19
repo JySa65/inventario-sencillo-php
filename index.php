@@ -38,7 +38,7 @@
 	</div>
 	<div id="ventOn"><?php require("templates/main.php"); ?></div>
 	<div id="ventOff" class="d-none"></div>
-	<div class="modal">
+	<div class="modal fade">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
 				<div class="modal-body">
