@@ -37,15 +37,15 @@ function toggleBuscar(){
 	var tb = $("#tgBuscar");
 	var tbi = tb.find("input");
 	if(tb.hasClass("slideInDown")){
+		$('#quitar_css').addClass('btn btn-danger');
 		tbi.attr("disabled", "");
 		tb.animateCss("slideOutUp fixed-top", function(){});
-		$('#pop').removeAttr('hidden');
 	}else{	
+		$('#quitar_css').removeClass('btn btn-danger');
 		tbi.val("").removeAttr("disabled");
 		tb.animateCss("slideInDown fixed-top", function(){
 			tbi.focus();
 		});
-		$('#pop').attr('hidden', '');
 	}
 }
 function cargarVentana(datos){
@@ -75,7 +75,15 @@ function hacerSubmit(ev){
 	});
 	return false;
 }
+function ocultarinpu(){
+	if($("#tgBuscar").hasClass("slideInDown")){
+		$('#quitar_css').addClass('btn btn-danger');
+		$("#tgBuscar").find("input").val("").attr("disabled", "");
+		$("#tgBuscar").animateCss("slideOutUp fixed-top", function(){});
+	}
+}
 function cambiarVentana(elementIn = "ventOff", elementOut = "ventOn", effect = "slide"){
+	ocultarinpu();
 	var eOut = $("#"+elementOut);
 	var eIn = $("#"+elementIn);
 	eOut.animateCss(effect + "OutLeft fixed-top", function(){});
