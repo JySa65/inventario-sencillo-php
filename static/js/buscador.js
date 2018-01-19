@@ -19,7 +19,8 @@ window.addEventListener('load', function(){
 		});
 	}
 	paginator(1, trr(1));
-})
+});
+
 $.fn.extend({
 	animateCss: function (animationName, callback) {
 		var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
@@ -174,7 +175,7 @@ function MouseTouchUp(ev, el) {
 	gtime = false;
 	clearTimeout(idInt);
 }
-/*
+
 var xy;
 function paginator(pagact, tr){
 	if(!pagact){
@@ -219,4 +220,3 @@ function paginator(pagact, tr){
 	next = '<li class="page-item'+ disabled +'"><a class="page-link" href="#" onclick="paginator(' + pagact + ', xy)">>></a></li>'
 	$("#pagina").html(prev + html + next)
 }
-*/
